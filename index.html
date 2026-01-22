@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theekshana | UI/UX & Web Designer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ===== HERO / COVER ===== */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url("images/cover.jpg") center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        /* ===== PROFILE IMAGE ===== */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero h1 span {
+            color: #c7d2fe;
+        }
+
+        .hero h2 {
+            margin-top: 10px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .primary {
+            background: #4f46e5;
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: #3730a3;
+        }
+
+        .secondary {
+            border: 2px solid #fff;
+            color: #fff;
+        }
+
+        .secondary:hover {
+            background: #fff;
+            color: #4f46e5;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 70px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+            color: #555;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .skill-card h4 {
+            margin-bottom: 15px;
+            color: #4f46e5;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* ===== SERVICES ===== */
+        .services {
+            background: #ffffff;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .service-box {
+            padding: 25px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #4f46e5;
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            transition: 0.3s ease;
+        }
+
+        .contact-icons a:hover {
+            background: #3730a3;
+            transform: scale(1.1);
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .whatsapp:hover {
+            background: #20ba58;
+        }
+
+        /* ===== MESSAGE MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #000;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: #4f46e5;
+            clear: both;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+        }
+
+        .submit-btn {
+            background: #4f46e5;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #3730a3;
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .whatsapp:hover {
+            background: #20ba58;
+        }
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .profile-img {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO / COVER -->
+    <section class="hero">
+        <img src="C:\Users\theek\OneDrive\Pictures\unnamed.jpg" alt="Profile Photo" class="profile-img">
+
+        <h1>Hi, I’m <span>Theekshana Mahanama</span></h1>
+        <h2>Aspiring UI/UX & Web Designer</h2>
+
+        <p>
+            I design intuitive user experiences and modern, responsive websites
+            with a strong focus on usability, simplicity, and visual clarity.
+        </p>
+
+        <div class="buttons">
+            <a href="#skills" class="btn primary">View My Skills</a>
+            <a href="#contact" class="btn secondary">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <h3>About Me</h3>
+        <p>
+            I am Theekshana Mahanama, a 25-year-old undergraduate student at the University of Jaffna, 
+            passionate about UI/UX and Web Design. I'm a beginner designer who is continuously learning 
+            and improving my skills in interface and web design. I enjoy working on mobile apps and websites 
+            by focusing on user needs, clean layouts, and responsive design. My goal is to gain real-world 
+            experience and grow as a professional designer who creates meaningful digital experiences.
+        </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+        <h3>My Skills</h3>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4>UI/UX Design</h4>
+                <ul>
+                    <li>Wireframing</li>
+                    <li>Prototyping</li>
+                    <li>User Flow Design</li>
+                    <li>UX Fundamentals</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h4>Web Design</h4>
+                <ul>
+                    <li>Website UI Design</li>
+                    <li>Landing Pages</li>
+                    <li>Basic HTML & CSS</li>
+                    <li>Design to Development Handoff</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h4>Tools</h4>
+                <ul>
+                    <li>Figma</li>
+                    <li>FigJam</li>
+                    <li>Canva</li>
+                    <li>Adobe XD (Basic)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services">
+        <h3>What I Can Design</h3>
+
+        <div class="services-list">
+            <div class="service-box">Mobile App UI/UX</div>
+            <div class="service-box">Website UI Design</div>
+            <div class="service-box">Responsive Web Layouts</div>
+            <div class="service-box">Landing Pages</div>
+            <div class="service-box">Dashboard Interfaces</div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <h3>Let's Connect</h3>
+        <p>Open for internships, freelance work, and learning opportunities.</p>
+        <p><strong>Email:</strong> theekshanasa23@gmail.com</p>
+        <p><strong>WhatsApp:</strong> 0779551449</p>
+        <p><strong>LinkedIn:</strong> www.linkedin.com/in/theekshana-mahanama-23959a300</p>
+        
+        <div class="contact-icons">
+            <a href="mailto:theekshanasa23@gmail.com" title="Email" class="email">✉️</a>
+            <a href="https://wa.me/94779551449?text=Hi%20Theekshana" title="WhatsApp" class="whatsapp">💬</a>
+            <a href="https://www.linkedin.com/in/theekshana-mahanama-23959a300" title="LinkedIn" class="linkedin">in</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Theekshana Mahanama. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
